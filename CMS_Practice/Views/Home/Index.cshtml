@@ -1,0 +1,58 @@
+﻿@model IEnumerable<CMS_Practice.Models.Article>
+@{
+    ViewBag.Title = "My First Easy CMS Practice Website";
+}
+
+<div class="jumbotron">
+    <h1>簡易 CMS 練習網站</h1>
+    <p class="lead"></p>
+    
+</div>
+
+<div class="row">
+    @foreach (var item in Model)
+    { 
+        <div class="col-sm-6 col-md-4">
+            <div class="thumbnail">
+                <img src="" alt=""/>
+                <div class="caption">
+                    <h3>@Html.DisplayFor(modelItem => item.Subject)</h3>
+                    <p>簡介：@Html.DisplayFor(modelItem => item.Summary)</p>
+                    <p>發佈者：@Html.DisplayFor(modelItem => item.CreateUser)</p>
+                    <p>發佈日期：@Html.DisplayFor(modelItem => item.PublishDate)</p>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg-@item.ID">詳細資料</button>
+                    <div class="modal fade bs-example-modal-lg-@item.ID tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-lg-@item.ID">
+                            <div class="modal-content" >
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                    <h3 class="modal-title" id="myModalLabel">主題：@Html.DisplayFor(modelItem => item.Subject)</h3>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="panel panel-primary">
+                                        <div class="panel-heading"><h4>簡介</h4></div>
+                                        <div class="panel-body">
+                                            <p>@Html.DisplayFor(modelItem => item.Summary)</p>
+                                        </div>
+                                        <div class="panel-heading"><h4>內容</h4></div>
+                                        <div class="panel-body">
+                                            @Html.DisplayFor(modelItem => item.ContentText)
+                                        </div>
+                                        <div class="panel-footer">
+                                            <p>發佈者：@Html.DisplayFor(modelItem => item.CreateUser)</p>
+                                            <p>發佈日期：@Html.DisplayFor(modelItem => item.PublishDate)</p>
+                                        </div>
+                                    </div>                                                                  
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary" data-dismiss="modal">關閉</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr />
+        </div>
+    }
+</div>
